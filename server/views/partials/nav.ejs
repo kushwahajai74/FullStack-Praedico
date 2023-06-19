@@ -1,0 +1,30 @@
+<nav>
+  <h2>User Mangement</h2>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <% if (user) { %>
+    <li><a href="/user/profile">Profile</a></li>
+    <% if (user. role =='ADMIN') { %>
+    <li><a href="/admin/users">Manage Users</a></li>
+    <li><a href="/auth/register">Register New User</a></li>
+    <% } %> <% if (user. role =='HEAD') { %>
+    <li><a href="/user/head/<%=user.id %>">Get Employees</a></li>
+    <li><a href="/auth/register">Register Employees</a></li>
+    <% } %>
+    <li>
+      <a href="#">Products</a>
+      <ul>
+        <li>
+          <a href="/product">Get All Products</a>
+        </li>
+        <li>
+          <a href="/product/new">Create New Products</a>
+        </li>
+      </ul>
+    </li>
+    <li><a href="/auth/logout">Logout</a></li>
+    <% } else { %>
+    <li><a href="/auth/login">Login</a></li>
+    <% } %>
+  </ul>
+</nav>

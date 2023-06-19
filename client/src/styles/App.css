@@ -1,0 +1,48 @@
+body {
+  background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  margin: 0 ;
+  padding: 0;
+}
+.formContainer{
+  max-width: 60vh;
+  /* height: 50vh; */
+  margin: auto;
+  margin-top: 20vh;
+  border: 2px solid gray;
+  padding: 20px 50px;
+  border-radius: 5px;
+  background-color: white;
+
+}
+.jumbotron>.form-group>input{
+  margin:5px 0px;
+}
+
+
+
+/* loader */
+.loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  max-width: 100%;
+  }
+  
+  .loading > div {
+  width: 10vmax;
+  height: 10vmax;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.719);
+  
+  border-radius: 50%;
+  
+  animation: loadingRotate 800ms linear infinite;
+  }
+  
+  @keyframes loadingRotate {
+  to {
+  transform: rotateZ(-360deg);
+  }
+  }
