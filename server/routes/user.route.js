@@ -14,14 +14,20 @@ router.get("/profile", async (req, res) => {
 // SHOW EMPLOYEES UNDER A MANAGER
 router.get("/head/:id", async (req, res) => {
   const { id } = req.params;
-  const manager = await User.findOne({ _id: id });
+  // console.log(id);
+  const manager = await User.findById(id);
+  // console.log(manager);
   // console.log(manager);
 
   const managerEmail = manager.email;
 
   const employees = await User.find({ managedBy: managerEmail });
-  // console.log(employees);
-  res.render("employeeDashboard", { employees: employees });
+  console.log(employees);
+  // res.render("employeeDashboard", { employees: employees });
+  return res.status(200).json({
+    success: "true",
+    employees
+  });
 });
 router.get("/:id", async (req, res, next) => {
   try {
