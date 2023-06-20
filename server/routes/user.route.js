@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 
 router.get("/profile", async (req, res) => {
   return res.status(200).json({
-    success: "jai",
+    success: "true",
     user: req.user,
   });
 });

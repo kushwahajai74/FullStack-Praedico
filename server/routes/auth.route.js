@@ -28,17 +28,49 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/register", async (req, res, next) => {
   try {
-    const { email, password, name } = req.body;
+    const {
+      fname,
+      lname,
+      email,
+      address,
+      city,
+      aadhar,
+      contact,
+      description,
+      endsAt,
+      startsAt,
+      institute,
+      managedBy,
+      password,
+      password2,
+      pincode,
+    } = req.body.details;
 
+    const { role } = req.body;
     let user = await User.findOne({ email });
     if (user) {
       return next(new ErrorHandler("User Already Exist", 404));
     }
+    if (password !== password2) {
+      return next(new ErrorHandler("passwords do not match", 404));
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     user = await User.create({
+      fname,
+      lname,
       email,
+      address,
+      city,
+      contact,
+      aadhar,
+      description,
+      endsAt,
+      startsAt,
+      institute,
+      managedBy,
       password: hashedPassword,
-      name,
+      pincode,
+      role,
     });
     setCookie(user, res, "Registered Successfully", 201);
   } catch (error) {

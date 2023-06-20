@@ -6,101 +6,80 @@ const { roles } = require("../utils/constants");
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
+    required: [true, "Please add email"],
+    unique: [true, "Email address already taken"],
     lowercase: true,
-    unique: true,
   },
+
   password: {
     type: String,
-    required: true,
+    required: [true, "Please add password"],
   },
-  // role: {
-  //   type: String,
-  //   enum: [roles.admin, roles.head, roles.emp],
-  //   default: roles.emp,
-  //   // required: true,
-  // },
-  // managedby: {
-  //   type: String,
-  //   lowercase: true,
-  //   required: true,
-  // },
-  // email: {
-  //   type: String,
-  //   required: [true, "Please add email"],
-  //   unique: [true, "Email address already taken"],
-  //   lowercase: true,
-  // },
 
-  // password: {
-  //   type: String,
-  //   required: [true, "Please add password"],
-  // },
-
-  name: {
+  fname: {
     type: String,
     required: [true, "Please add first name"],
   },
 
-  // lname: {
-  //   type: String,
-  //   required: [true, "Please add first name"],
-  // },
+  lname: {
+    type: String,
+    required: [true, "Please add first name"],
+  },
 
-  // contact: {
-  //   type: String,
-  //   required: [true, "Please add contact number"],
-  // },
+  contact: {
+    type: String,
+    required: [true, "Please add contact number"],
+  },
 
-  // aadhar: {
-  //   type: String,
-  //   required: [true, "Please add aadhar number"],
-  // },
+  aadhar: {
+    type: String,
+    required: [true, "Please add aadhar number"],
+  },
 
-  // address: {
-  //   type: String,
-  //   required: [true, "Please add address"],
-  // },
+  address: {
+    type: String,
+    required: [true, "Please add address"],
+  },
 
-  // pincode: {
-  //   type: String,
-  //   required: [true, "Please add pincode"],
-  // },
+  pincode: {
+    type: String,
+    required: [true, "Please add pincode"],
+  },
 
-  // city: {
-  //   type: String,
-  //   required: [true, "Please add city"],
-  // },
+  city: {
+    type: String,
+    required: [true, "Please add city"],
+  },
 
-  // institute: {
-  //   type: String,
-  //   required: [true, "Please add institute."],
-  // },
+  institute: {
+    type: String,
+    required: [true, "Please add institute."],
+  },
 
-  // description: {
-  //   type: String,
-  // },
+  description: {
+    type: String,
+  },
 
-  // role: {
-  //   type: String,
-  //   enum: [roles.admin, roles.head, roles.emp, roles.intern],
-  //   default: roles.emp,
-  //   required: [true, "Please add role."],
-  // },
+  role: {
+    type: String,
+    // enum: [roles.admin, roles.head, roles.emp, roles.intern],
+    default: "EMPLOYEE",
+    required: [true, "Please add role."],
+  },
 
-  // startsAt: {
-  //   type: Date,
-  //   required: [true, "Please add start date"],
-  // },
+  startsAt: {
+    type: Date,
+    required: [true, "Please add start date"],
+  },
 
-  // endsAt: {
-  //   type: Date,
-  //   required: [true, "Please add end date."],
-  // },
+  endsAt: {
+    type: Date,
+    required: [true, "Please add end date."],
+  },
 
-  // managedBy: {
-  //   type: String,
-  // },
+  managedBy: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("user", userSchema);
