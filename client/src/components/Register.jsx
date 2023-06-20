@@ -1,14 +1,64 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../main";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { server } from "../main";
+import { Navigate } from "react-router-dom";
 
 const Register = () => {
-  const [details, setDetails] = useState({});
-  const handleSubmit = (e) => {};
+  const initialValue = {
+    fname: "",
+    lname: "",
+    email: "",
+    address: "",
+    city: "",
+    contact: "",
+    aadhar: "",
+    description: "",
+    endsAt: "",
+    startsAt: "",
+    institute: "",
+    managedBy: "",
+    password: "",
+    password2: "",
+    pincode: "",
+  };
+  const [details, setDetails] = useState(initialValue);
+  let [role, setRole] = useState("");
+  const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
+    useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${server}/auth/register`,
+        { details, role },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      toast.success(data.message);
+      setIsAuthenticated(true);
+      setLoading(false);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      console.log(error);
+
+      setLoading(false);
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDetails((prev) => {
       return { ...prev, [name]: value };
     });
   };
+  if (isAuthenticated) return <Navigate to={"/"} />;
   return (
     <>
       <div
@@ -91,7 +141,7 @@ const Register = () => {
             <div className="col-sm-6 form-group">
               <label htmlFor="State">City</label>
               <input
-                type="address"
+                type="city"
                 className="form-control"
                 onChange={handleChange}
                 name="city"
@@ -116,7 +166,7 @@ const Register = () => {
             <div className="col-sm-6 form-group">
               <label htmlFor="zip">Institute Name</label>
               <input
-                type="zip"
+                type="text"
                 className="form-control"
                 onChange={handleChange}
                 name="institute"
@@ -130,10 +180,10 @@ const Register = () => {
               <select
                 name="role"
                 className="form-select"
-                onChange={handleChange}
+                onChange={(e) => setRole((role = e.target.value))}
                 aria-label="Default select example"
               >
-                <option selected>Select</option>
+                <option defaultValue="EMPLOYEE">Select</option>
                 <option value="HEAD">Head</option>
                 <option value="EMPLOYEE">Employee</option>
                 <option value="INTERN">Intern</option>
