@@ -20,7 +20,7 @@ router.post("/login", async (req, res, next) => {
     if (!isMatch) {
       return next(new ErrorHandler("Invalid Email or Password", 400));
     }
-    setCookie(user, res, `Welcome Back ${user.name}`, 200);
+    setCookie(user, res, `Welcome Back ${user.fname}`, 200);
   } catch (error) {
     next(error);
   }
