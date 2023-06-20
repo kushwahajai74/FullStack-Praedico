@@ -33,7 +33,7 @@ const Profile = () => {
       });
   }, []);
 
-  if (!isAuthenticated) return <Navigate to={"/"} />;
+  if (!isAuthenticated) return <Navigate to="/" replace={true} />;
   return loading ? (
     <Loader />
   ) : (

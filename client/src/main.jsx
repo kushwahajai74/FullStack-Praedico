@@ -13,6 +13,7 @@ export const AppWrapper = () => {
   const [user, setUser] = useState({});
   const [isAdmin, setAdmin] = useState(false);
   const [isHead, setHead] = useState(false);
+
   return (
     <Context.Provider
       value={{
@@ -25,7 +26,7 @@ export const AppWrapper = () => {
         isAdmin,
         setAdmin,
         isHead,
-        setHead
+        setHead,
       }}
     >
       <App />

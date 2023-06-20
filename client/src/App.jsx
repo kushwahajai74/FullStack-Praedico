@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.css";
 import Register from "./components/Register";
@@ -12,9 +13,11 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { Context } from "./main";
 import { server } from "./main";
-
+import UserList from "./components/userList";
 const App = () => {
-  const { setUser, setIsAuthenticated, setLoading, setAdmin, setHead } = useContext(Context);
+  const { setUser, setIsAuthenticated, setLoading, setAdmin, setHead } =
+    useContext(Context);
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -23,12 +26,12 @@ const App = () => {
       })
       .then((res) => {
         setUser(res.data.user);
-        const {role} = res.data.user;
+        const { role } = res.data.user;
         console.log(role);
-        if(role==="ADMIN"){
-          setAdmin(true)
+        if (role === "ADMIN") {
+          setAdmin(true);
         }
-        if(role==="HEAD"){
+        if (role === "HEAD") {
           setHead(true);
         }
         setIsAuthenticated(true);
@@ -50,6 +53,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/employees/:id" element={<UserList />} />
         </Routes>
         <Toaster />
       </Router>

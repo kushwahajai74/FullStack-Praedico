@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  if (isAuthenticated) return <Navigate to={"/profile"} />;
+  if (isAuthenticated) return <Navigate to={"/profile"} replace={true} />;
 
   const submitHandler = async (e) => {
     e.preventDefault();

@@ -5,10 +5,18 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Context, server } from "../main";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 function NavigationBar() {
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading, setUser, isHead, isAdmin } =
-    useContext(Context);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    loading,
+    setLoading,
+    setUser,
+    isHead,
+    isAdmin,
+  } = useContext(Context);
   const logoutHandler = async (e) => {
     try {
       setLoading(true);
@@ -19,6 +27,7 @@ function NavigationBar() {
       setIsAuthenticated(false);
       setLoading(false);
       setUser({});
+      <Navigate to="/login" replace={true} />;
     } catch (error) {
       toast.error(error?.response?.data?.message);
       console.log(error);
@@ -59,10 +68,9 @@ function NavigationBar() {
           )}
           {isAuthenticated ? (
             <>
-            <LinkContainer to="/profile">
-              <Nav.Link>Profile</Nav.Link>
-            </LinkContainer>
-
+              <LinkContainer to="/profile">
+                <Nav.Link>Profile</Nav.Link>
+              </LinkContainer>
             </>
           ) : (
             <></>
