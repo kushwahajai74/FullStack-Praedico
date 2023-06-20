@@ -62,11 +62,72 @@ function NavigationBar() {
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
-
             </>
           ) : (
             <></>
           )}
+
+          {isAuthenticated && (isAdmin || isHead)? (
+            <>
+            <LinkContainer to="/register">
+              <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+            </>
+          )
+           :
+           (
+            <>
+            </>
+           )
+          }
+
+          {isAuthenticated? 
+          (
+            <>
+            <LinkContainer to="/user/order">
+              <Nav.Link>Add Order</Nav.Link>
+            </LinkContainer>
+
+            </>
+          ):
+          (
+            <>
+            </>
+          )
+          }
+
+          {isAuthenticated && isAdmin? 
+          (
+            <>
+            <LinkContainer to="/users">
+              <Nav.Link>Show All Users</Nav.Link>
+            </LinkContainer>
+
+            </>
+          ):
+          (
+            <>
+            </>
+          )
+
+          }
+
+          {isAuthenticated && isHead? 
+          (
+            <>
+            <LinkContainer to="/employees">
+              <Nav.Link>Show All Employees Under you</Nav.Link>
+            </LinkContainer>
+
+            </>
+          ):
+          (
+            <>
+            </>
+          )
+
+          }
+          
         </div>
       </Navbar.Collapse>
     </Navbar>
