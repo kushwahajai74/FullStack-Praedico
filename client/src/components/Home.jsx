@@ -4,6 +4,8 @@ import { Container } from "react-bootstrap";
 import { Navigate, NavigationType } from "react-router-dom";
 
 const Home = () => {
+
+  const {isHead, isAdmin, isAuthenticated} = useContext(Context);
   return (
     <>
       <Container className="my-5 mx-5">

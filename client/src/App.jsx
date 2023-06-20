@@ -14,7 +14,7 @@ import { Context } from "./main";
 import { server } from "./main";
 
 const App = () => {
-  const { setUser, setIsAuthenticated, setLoading } = useContext(Context);
+  const { setUser, setIsAuthenticated, setLoading, setAdmin, setHead } = useContext(Context);
   useEffect(() => {
     setLoading(true);
     axios
@@ -23,6 +23,14 @@ const App = () => {
       })
       .then((res) => {
         setUser(res.data.user);
+        const {role} = res.data.user;
+        console.log(role);
+        if(role==="ADMIN"){
+          setAdmin(true)
+        }
+        if(role==="HEAD"){
+          setHead(true);
+        }
         setIsAuthenticated(true);
         setLoading(false);
       })

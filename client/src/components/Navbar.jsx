@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 
 function NavigationBar() {
-  const { isAuthenticated, setIsAuthenticated, loading, setLoading, setUser } =
+  const { isAuthenticated, setIsAuthenticated, loading, setLoading, setUser, isHead, isAdmin } =
     useContext(Context);
   const logoutHandler = async (e) => {
     try {
@@ -58,9 +58,12 @@ function NavigationBar() {
             </LinkContainer>
           )}
           {isAuthenticated ? (
+            <>
             <LinkContainer to="/profile">
               <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
+
+            </>
           ) : (
             <></>
           )}
