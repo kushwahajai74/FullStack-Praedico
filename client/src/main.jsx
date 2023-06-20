@@ -11,6 +11,8 @@ export const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({});
+  const [isAdmin, setAdmin] = useState(false);
+  const [isHead, setHead] = useState(false);
   return (
     <Context.Provider
       value={{
@@ -20,6 +22,10 @@ export const AppWrapper = () => {
         setLoading,
         user,
         setUser,
+        isAdmin,
+        setAdmin,
+        isHead,
+        setHead
       }}
     >
       <App />
